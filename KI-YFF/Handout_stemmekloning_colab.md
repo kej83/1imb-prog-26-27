@@ -77,7 +77,7 @@ alltid først.
 1. Gå til [colab.research.google.com](https://colab.research.google.com) og logg inn.
 2. **Fil → Last opp notatblokk** → velg `Stemmekloning_Colab.ipynb`.
 3. **Kjøretid → Endre type kjøretid → T4 GPU → Lagre.** Uten dette virker ingenting.
-4. Kjør cellene ovenfra og ned. Steg 1 og 2 tar til sammen 10–20 minutter.
+4. Kjør cellene ovenfra og ned. Steg 1 og 2 tar til sammen 15–25 minutter.
 5. **Gjør punkt 6 mens dere venter.** Ikke sitt og se på framdriftslinja.
 
 ### Hva skjer egentlig?
@@ -85,10 +85,11 @@ alltid først.
 Modellen er altfor tung for en vanlig bærbar PC. I Colab kjører den på et skjermkort i et av
 Googles datasentre, mens dere bare ser resultatet i nettleseren.
 
-Appen kjører på en maskin som ikke har noen egen adresse på internett. Derfor lager notatblokka
-en **tunnel** med `cloudflared` — en midlertidig, offentlig adresse som slutter på
-`trycloudflare.com` og peker rett inn til appen deres. Den er gratis og krever ingen konto.
-(Alternativet ngrok krever innlogging og token, så vi lar det ligge.)
+Appen kjører på en maskin som ikke har noen egen adresse på internett. Derfor starter vi den
+med valget `--share`, som ber programmet lage en midlertidig, offentlig adresse. Den slutter på
+`gradio.live` og virker i noen timer. Alle i gruppa kan åpne den samme lenken samtidig, fra hver
+sin maskin. (Tjenester som ngrok gjør det samme, men krever konto og innlogging. Her er det
+innebygd og gratis.)
 
 ### Tre advarsler
 
@@ -129,9 +130,10 @@ Døp fila `fornavn_original.wav`. **Dette er den ene innleveringen din.**
 Når notatblokka har skrevet ut lenken, åpne den i en ny fane. Alle i gruppa kan åpne den samme
 lenken samtidig.
 
-1. **Speaker reference / Timbre** — last opp opptaket ditt.
+1. **Referanselyd** — last opp opptaket ditt, eller ta det opp på nytt rett i appen med
+   mikrofonknappen. Appen godtar også videofiler og henter ut lyden selv.
 2. **Text** — skriv noe kort på engelsk til å begynne med, f.eks. `Hello, this is my voice.`
-3. Trykk **Generate**.
+3. Trykk **Generate Speech** (den store røde knappen).
 
 Lytt. Så gjør dere dette, i denne rekkefølgen:
 
@@ -189,15 +191,19 @@ Nå skal dere finne ut hvor langt stemmen kan strekkes.
 
 I feltet **Emotion control**:
 
-1. **Same as the voice reference** — følelsen hentes fra referanseopptaket ditt
+1. **Same as speaker voice** — følelsen hentes fra referanseopptaket ditt
 2. **Use emotion reference audio** — dere laster opp et *eget* klipp som bare styrer følelsen
 3. **Use emotion vector control** — åtte skyveknapper:
    `glad · sint · trist · redd · avsky · tungsindig · overrasket · rolig`
-4. **Use emotion description text** — beskriv følelsen med ord, på engelsk:
+4. **Use emotion text description** — beskriv følelsen med ord, på engelsk:
    `whispering, secretive` eller `crying, voice breaking`
 
 **Emotion alpha** styrer styrken. Rundt **0,6** gir som regel det mest naturlige. Skru den til
 1,0 og hør hvor det ryker.
+
+**Bruk Save preset.** Appen kan lagre hele oppsettet under et navn og hente det tilbake senere.
+Når dere finner noe som funker, lagre det med én gang — da slipper dere å skrive alt om igjen
+når dere skal sammenligne to varianter. Låser en generering seg, trykk **Cancel**.
 
 ### Hovedoppgaven: lån hverandres følelser
 
@@ -379,7 +385,7 @@ Svar kort skriftlig, som gruppe:
 | Uttalen er helt gal | Norsk tekst med æøå | Skriv om fonetisk, se punkt 8 |
 | Stopper midt i setningen | For lang tekst i ett jafs | Del opp i korte setninger |
 | Følelsen høres påtatt ut | Emotion alpha for høy | Prøv 0,5–0,7 i stedet for 1,0 |
-| `unrecognized arguments: --version` | Repoet er oppdatert | Sett `MODELL = "2.5"` øverst i startcella |
+| `Model directory ... does not exist` | Modellnedlastingen ble ikke ferdig | Kjør Steg 2 i notatblokka om igjen |
 | `CUDA out of memory` | For mye tekst om gangen | Kortere tekst, sjekk at FP16 er på |
 | Lenken sier «Bad Gateway» | Appen er ikke ferdig startet | Vent ett minutt, oppdater sida |
 | Ingen GPU tilgjengelig | Gratiskvoten er brukt opp | Bytt til en annen Google-konto i gruppa |
@@ -417,10 +423,11 @@ Les alltid et skript før du kjører det. Det er en god vane. Her er hva cellene
 | `nvidia-smi` | Viser hvilket skjermkort Google har gitt dere |
 | `git clone <adresse>` | Laster ned kildekoden fra GitHub |
 | `pip install uv` | Installerer `uv`, en mye raskere erstatter for `pip` |
-| `uv sync --extra webui` | Installerer alle Python-pakkene programmet trenger |
+| `uv venv --python 3.10` | Lager et isolert Python-miljø med akkurat den versjonen appen krever |
+| `uv pip install -r requirements...` | Installerer alle Python-pakkene programmet trenger |
 | `snapshot_download(...)` | Laster ned selve modellfilene, flere gigabyte |
 | `subprocess.Popen([... webui.py ...])` | Starter appen i bakgrunnen |
-| `cloudflared tunnel --url ...` | Lager den midlertidige, offentlige adressen |
+| `--share` | Ber appen lage den midlertidige, offentlige `gradio.live`-adressen |
 | `files.download(...)` | Sender zip-fila med lyden ned til maskinen din |
 
 **Stemmekloning er ikke én modell, men fem som samarbeider:** hovedmodellen som lager talen,
