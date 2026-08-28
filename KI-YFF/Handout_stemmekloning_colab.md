@@ -44,9 +44,8 @@ I en gruppe på to slår dere sammen regissør og lytter.
 Dere kloner **bare deres egen stemme**. Ingen andres — ikke lærere, ikke venner utenfor gruppa,
 ikke familie, ikke kjendiser eller politikere.
 
-Ett unntak, og det er en viktig del av oppgaven: dere kan låne hverandre **følelsesklipp**
-(se punkt 7). Da låner dere bare måten noen roper eller gråter på, ikke stemmen deres. Spør
-alltid først.
+Ett unntak, og det er en viktig del av oppgaven: dere kan låne **følelsesklipp** fra youtube eller netflix
+(se punkt 7). Da låner dere bare måten noen roper eller gråter på, ikke stemmen deres. IKKE publiser andres klonede stemmer.
 
 **Ellers gjelder:**
 
