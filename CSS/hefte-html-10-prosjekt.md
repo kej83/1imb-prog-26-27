@@ -14,8 +14,6 @@ Du skal planlegge og bygge et **helt nettsted på tre eller flere sider** om et 
 
 Dette er ikke et nytt hefte med nytt stoff. Alt du trenger, kan du allerede — oppgaven er å sette det sammen selv, uten at noen forteller deg hvilket element eller hvilken regel du skal bruke hvor. Du har heftene tilgjengelig hele veien, og du skal bruke dem som oppslagsverk.
 
-**Tidsbruk:** omtrent tre uker.
-
 ---
 
 ## Velg tema
@@ -201,7 +199,7 @@ Legg ved dette arket med sjekklistene avkrysset, og svar kort på de tre spørsm
 
 ....................................................................................................
 
-**3. Hva ville du gjort annerledes hvis du fikk en uke til?**
+**3. Hva ville du gjort annerledes hvis du fikk mer tid?**
 
 ....................................................................................................
 
