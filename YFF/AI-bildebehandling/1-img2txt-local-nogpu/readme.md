@@ -131,9 +131,9 @@ ollama list
 3. Gå til **Install / Custom Nodes** (navn kan variere)
 4. Søk etter:
 
-* `comfyui-ollama`
+* `ollama`
 
-5. Klikk **Install**
+5. Klikk på `comfyui-ollama` og velg **Install**
 6. Når den er ferdig: **Restart ComfyUI** (Manager har ofte en “Restart”-knapp, ellers stopp/start fra terminal).
 
 ✅ **Sjekkpunkt:** Du kan legge til noder som heter:
@@ -149,7 +149,7 @@ Du skal lage 4 noder og koble dem.
 
 ## 1. Legg til noder
 
-Høyreklikk på canvas → Add Node / Search:
+Høyreklikk på canvas → Add Node / Eller dobbeltklikk for å søke, og finn deretter disse nodene:
 
 * **Load Image**
 * **Ollama Connectivity**
