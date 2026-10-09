@@ -1,3 +1,5 @@
+# NB!
+# Bruk Google-Colab dersom din huggingface konto er mindre enn 30 dager gammel!!
 ---
 title: Ultimate TTS – norsk og engelsk
 emoji: 🎙️
