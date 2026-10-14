@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilhallen – fra budsjett til luksus</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, "Segoe UI", Arial, sans-serif;
+      background: #f2f4f7;
+      color: #1d2430;
+    }
+
+    /* =====================================================
+       HEADER – FLEXBOX
+       Logo til venstre, meny til høyre.
+       ===================================================== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background: #1d2430;
+      color: white;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .logo span { color: #f2c230; }
+
+    nav ul {
+      display: flex;          /* menypunktene på rad */
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* =====================================================
+       INTRO
+       ===================================================== */
+    .intro {
+      text-align: center;
+      padding: 40px 16px 0;
+    }
+    .intro h1 { margin: 0 0 8px; font-size: 2rem; }
+    .intro p  { margin: 0; color: #5b6573; }
+
+    /* =====================================================
+       SKALA – FLEXBOX
+       "Billig" helt til venstre, "Luksus" helt til høyre.
+       ===================================================== */
+    .skala {
+      max-width: 600px;
+      margin: 24px auto 0;
+      padding: 0 16px;
+    }
+    .skala-strek {
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right, #a8cbb0, #3b6ea8, #19a7a0, #d62828, #16181d);
+    }
+    .skala-tekst {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #5b6573;
+    }
+
+    /* =====================================================
+       BILENE – FLEXBOX MED WRAP
+       Kortene står på rad og går over på ny linje
+       når skjermen blir smal.
+       ===================================================== */
+    .biler {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1300px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+
+    /* =====================================================
+       ETT KORT – FLEXBOX I KOLONNE
+       Bilde øverst, innhold under.
+       ===================================================== */
+    .kort {
+      flex: 1 1 220px;        /* start på 220px, voks og krymp */
+      max-width: 300px;       /* men aldri bredere enn 300px */
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 12px;
+      border-top: 5px solid #ccc;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .kort img {
+      display: block;
+      width: 100%;
+    }
+
+    .innhold {
+      flex: 1;                /* fyller resten av kortets høyde */
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px;
+    }
+    .innhold h2 { margin: 0; font-size: 1.2rem; }
+    .innhold p  { margin: 0; color: #5b6573; font-size: 0.95rem; }
+
+    .kategori {
+      align-self: flex-start; /* bare så bred som teksten */
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: #eef1f5;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* =====================================================
+       FAKTA – FLEXBOX
+       Tre like brede bokser ved siden av hverandre.
+       ===================================================== */
+    .fakta {
+      display: flex;
+      gap: 8px;
+    }
+    .fakta div {
+      flex: 1;                  /* alle tre like brede */
+      display: flex;
+      flex-direction: column;   /* tall over tekst */
+      align-items: center;      /* midtstilt */
+      padding: 8px 4px;
+      border-radius: 8px;
+      background: #f2f4f7;
+    }
+    .fakta strong { font-size: 1.05rem; }
+    .fakta span   { font-size: 0.75rem; color: #5b6573; }
+
+    /* =====================================================
+       PRIS – FLEXBOX
+       Pris til venstre, stjerner til høyre.
+       margin-top: auto skyver prisen og knappen ned,
+       så de står likt i alle kortene.
+       ===================================================== */
+    .pris-linje {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .pris     { font-size: 1.05rem; font-weight: 800; white-space: nowrap; }
+    .stjerner { color: #f2c230; font-size: 0.9rem; white-space: nowrap; }
+
+    .kort button {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #1d2430;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* Fargekant øverst på hvert kort */
+    .niva1 { border-top-color: #a8cbb0; }
+    .niva2 { border-top-color: #3b6ea8; }
+    .niva3 { border-top-color: #19a7a0; }
+    .niva4 { border-top-color: #d62828; }
+
+    /* Det dyreste kortet får en egen luksusstil */
+    .luksus {
+      background: #16181d;
+      color: #f5f0e1;
+      border-top-color: #c9a227;
+    }
+    .luksus p,
+    .luksus .fakta span { color: #b9b2a0; }
+    .luksus .fakta div  { background: #23262d; }
+    .luksus .kategori   { background: #c9a227; color: #16181d; }
+    .luksus button      { background: #c9a227; color: #16181d; }
+
+    /* =====================================================
+       FOOTER – FLEXBOX
+       Én tekst til venstre, én til høyre.
+       ===================================================== */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: #1d2430;
+      color: #aab3c0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">BIL<span>HALLEN</span></div>
+    <nav>
+      <ul>
+        <li><a href="#">Biler</a></li>
+        <li><a href="#">Finansiering</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="intro">
+    <h1>Fra budsjett til luksus</h1>
+    <p>Fem biler – én for hver lommebok.</p>
+  </section>
+
+  <div class="skala">
+    <div class="skala-strek"></div>
+    <div class="skala-tekst">
+      <span>Billig og enkel</span>
+      <span>Dyr og luksuriøs</span>
+    </div>
+  </div>
+
+  <main class="biler">
+
+    <!-- Bil 1 -->
+    <article class="kort niva1">
+      <img src="bilder/sparo-basis.svg" alt="Liten grønn bybil">
+      <div class="innhold">
+        <span class="kategori">Bybil</span>
+        <h2>Sparo Basis</h2>
+        <p>Enkel og billig. Kommer deg fra A til B.</p>
+        <div class="fakta">
+          <div><strong>68</strong><span>hk</span></div>
+          <div><strong>14,9 s</strong><span>0–100</span></div>
+          <div><strong>4</strong><span>seter</span></div>
+        </div>
+        <div class="pris-linje">
+          <span class="pris">149 900 kr</span>
+          <span class="stjerner">★☆☆☆☆</span>
+        </div>
+        <button>Se bilen</button>
+      </div>
+    </article>
+
+    <!-- Bil 2 -->
+    <article class="kort niva2">
+      <img src="bilder/familia-kombi.svg" alt="Blå stasjonsvogn">
+      <div class="innhold">
+        <span class="kategori">Familiebil</span>
+        <h2>Familia Kombi</h2>
+        <p>Plass til hele familien, hunden og all bagasjen på hytteturen.</p>
+        <div class="fakta">
+          <div><strong>130</strong><span>hk</span></div>
+          <div><strong>9,8 s</strong><span>0–100</span></div>
+          <div><strong>5</strong><span>seter</span></div>
+        </div>
+        <div class="pris-linje">
+          <span class="pris">349 900 kr</span>
+          <span class="stjerner">★★☆☆☆</span>
+        </div>
+        <button>Se bilen</button>
+      </div>
+    </article>
+
+    <!-- Bil 3 -->
+    <article class="kort niva3">
+      <img src="bilder/volta-ev.svg" alt="Hvit elbil">
+      <div class="innhold">
+        <span class="kategori">Elbil</span>
+        <h2>Volta EV</h2>
+        <p>Stille, rask og utslippsfri. Rekkevidde på over 500 km.</p>
+        <div class="fakta">
+          <div><strong>300</strong><span>hk</span></div>
+          <div><strong>5,9 s</strong><span>0–100</span></div>
+          <div><strong>5</strong><span>seter</span></div>
+        </div>
+        <div class="pris-linje">
+          <span class="pris">549 900 kr</span>
+          <span class="stjerner">★★★☆☆</span>
+        </div>
+        <button>Se bilen</button>
+      </div>
+    </article>
+
+    <!-- Bil 4 -->
+    <article class="kort niva4">
+      <img src="bilder/aurum-gt.svg" alt="Rød sportsbil">
+      <div class="innhold">
+        <span class="kategori">Sportsbil</span>
+        <h2>Aurum GT</h2>
+        <p>Lav, rask og høylytt. Bygget for svingete veier og racerbane.</p>
+        <div class="fakta">
+          <div><strong>620</strong><span>hk</span></div>
+          <div><strong>3,2 s</strong><span>0–100</span></div>
+          <div><strong>2</strong><span>seter</span></div>
+        </div>
+        <div class="pris-linje">
+          <span class="pris">2 190 000 kr</span>
+          <span class="stjerner">★★★★☆</span>
+        </div>
+        <button>Se bilen</button>
+      </div>
+    </article>
+
+    <!-- Bil 5 -->
+    <article class="kort luksus">
+      <img src="bilder/regalia-royale.svg" alt="Lang svart luksusbil med gulldetaljer">
+      <div class="innhold">
+        <span class="kategori">Luksus</span>
+        <h2>Regalia Royale</h2>
+        <p>Håndsydd skinn, champagnekjøler og egen sjåfør. Den ultimate luksusen.</p>
+        <div class="fakta">
+          <div><strong>570</strong><span>hk</span></div>
+          <div><strong>4,8 s</strong><span>0–100</span></div>
+          <div><strong>4</strong><span>seter</span></div>
+        </div>
+        <div class="pris-linje">
+          <span class="pris">6 900 000 kr</span>
+          <span class="stjerner">★★★★★</span>
+        </div>
+        <button>Se bilen</button>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Bilhallen</span>
+    <span>Laget med flexbox</span>
+  </footer>
+
+</body>
+</html>
