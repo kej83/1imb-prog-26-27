@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border: 2px dashed black;
+            padding:10px;
+            height: 300px;
+        }
+        .box{
+            width: 80px;
+            height:80px;
+            padding:20px;
+            background-color: lightblue;
+            border:1px solid black;
+        }
+        .flex{
+            display:flex;
+        }
+        .center{
+            justify-content: center;
+        }
+        .space-between{
+            justify-content: space-between;
+        }
+        .center-vertical{
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>1. Uten flexbox</h2>
+    <div class="container">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>2. Med display:flex</h2>
+    <div class="container flex">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>3. justify-content:center</h2>
+      <div class="container flex center">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>4. justify-content:space-between</h2>
+      <div class="container flex space-between">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>5. Plasser elementer i midten med align-items: center og justify-content:center</h2>
+      <div class="container flex center center-vertical">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+    
+</body>
+</html>
