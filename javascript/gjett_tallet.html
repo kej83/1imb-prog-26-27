@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Gjett tallet (1-100)</h1>
+    <h4>Et heltall er tilfeldig generert i intervallet 0 til 100. Gjett på tallet.</h4>
+
+    <div>Tall: <input type="number"></div>
+
+    <button onclick="gjett()">Gjett</button>
+
+    <p>Tilbakemelding kommer her.</p>
+
+    <script>
+        function gjett() {
+            // 1. Ta imot brukerens gjetting
+            let gjett = parseInt(document.querySelector("input").value);
+            // Sjekk om ingenting er skrevet inn 
+            if (!gjett) {
+                document.querySelector("p").textContent = "FY! du skrev ikke inn noe!"
+            }
+            // 2. Sammenlign med fasit og gi tilbakemeldinger
+            else if (gjett > fasitTall) {
+                antallForsokIgjen--;  // Minker forsøk med 1
+                document.querySelector("p").textContent = "Feil, for høyt. Du har " + antallForsokIgjen + " forsøk igjen.";
+                
+            } else if (gjett < fasitTall) {
+                antallForsokIgjen--;  // Minker forsøk med 1
+                document.querySelector("p").textContent = "Feil, for lavt. Du har " + antallForsokIgjen + " forsøk igjen.";
+                
+            } else  {
+                // Gjettet riktig
+                document.querySelector("p").textContent = "Riktig! Hurra!";
+                antallForsokIgjen--;  // Minker forsøk med 1
+            }
+            
+            // Hvis brukt opp antall forsøk, game over
+            if (antallForsokIgjen == 0) {
+                document.querySelector("button").disabled=true;
+            }
+        }
+        // Math.random() gir f.eks. 0.456234346456
+        // tilfeldige desimaltall mellom 0 og 1.
+        // Math.ceil(3.24456) gir 4, Math.ceil(3.87) gir også 4
+        let fasitTall = Math.ceil(Math.random()*100);
+        let antallForsokIgjen = 5;
+    </script>
+</body>
+
+</html>

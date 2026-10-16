@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hilsen med navn</h1>
+
+    <div>Ditt navn: 
+        <input type="text">
+    </div>
+    <button onclick="hils()">Hils på meg</button>
+    
+
+    <script>
+        // DETTE ER JAVASCRIPT
+        function hils() {
+            // 1. Les inn navn fra input
+            // querySelector(input) gir det første input-elementet
+            // .value gir selve teksten som er skrevet inn i input
+            let navn = document.querySelector('input').value;
+            // 2. Lag en setning som hilser
+            let setning = "Hei, " + navn + ". Har du det bra?" 
+            document.write(setning);
+        }
+    </script>
+</body>
+</html>
