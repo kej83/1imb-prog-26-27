@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        document.write("Hei");
+        document.write("<h1>Overskrift</h1>");
+
+        // Variabel
+        let fornavn = "jens";
+        document.write(fornavn);
+
+        document.write("<br>");
+
+        let etternavn = "stoltenberg";
+        let fulltNavn = fornavn + " " + etternavn;
+        document.write(fulltNavn);
+
+        // Tall vs tekst
+        document.write("<br>")
+        document.write(5 + 3);  // 8
+        document.write("<br>")
+        document.write("5" + "3");  // 53
+
+        // Operasjoner med tall
+        let tall = 5;
+        tall = tall + 3;  
+        tall++;  // øker med 1  
+        tall += 4;  // øker med 4  
+        tall -= 2;  // minker med 2  
+        tall--;  // minker med 1  
+        document.write("<br>");
+        document.write(tall);  // 10
+    </script>
+</body>
+</html>

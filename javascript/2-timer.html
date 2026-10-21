@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function tell() {
+            teller++;
+            document.writeln(teller);
+        }
+        
+        let teller = 0;
+        // Gjenta tell-funksjonen hvert 1000 ms 
+        // (altså hvert sekund)
+        setInterval(tell, 1000);
+    </script>
+</body>
+</html>

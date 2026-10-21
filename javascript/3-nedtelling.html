@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nedtelling</h1>
+    <p id="txtUt"></p>
+
+    <script>
+        function tellNed() {
+            txtUt.textContent = teller + "...";
+            teller--;  // Minke med 1
+        }
+
+        let teller = 5;
+        setInterval(tellNed, 1000);
+    </script>
+</body>
+</html>
