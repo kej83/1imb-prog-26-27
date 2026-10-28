@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Gangetesten</h1>
+
+    <p id="txtGangestykke"></p>
+    <input id="inpSvar" type="number">
+    <p id="txtUt"></p>
+    <script>
+
+        inpSvar.addEventListener("keypress", function (event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+
+                let svar = inpSvar.value;
+                
+                // Sjekk svar og gi tilbakemelding
+                if (svar == fasit) {
+                    txtUt.textContent = `Riktig! ${tallA} * ${tallB} er ${fasit}`;
+                } else {
+                    txtUt.textContent = `Feil! ${tallA} * ${tallB} er ${fasit}`;
+                }
+                // Etter 2 sekunder, kjør koden i funksjonen nyttStykke
+                setTimeout(nyttStykke, 2000);
+            }
+        });
+
+        function nyttStykke() {
+            // Nytt stykke
+            tallA = Math.floor(Math.random() * 11);
+            tallB = Math.floor(Math.random() * 11);
+            fasit = tallA * tallB;
+            txtGangestykke.textContent = `${tallA} * ${tallB} = ...`;
+            // Tøm input-feltet og txtut felt
+            inpSvar.value = "";
+            txtUt.textContent = "";
+        }
+
+
+        let tallA = Math.floor(Math.random() * 11);
+        let tallB = Math.floor(Math.random() * 11);
+        let fasit = tallA * tallB;
+        inpSvar.focus();
+        txtGangestykke.textContent = `${tallA} * ${tallB} = ...`;
+
+
+    </script>
+</body>
+
+</html>
