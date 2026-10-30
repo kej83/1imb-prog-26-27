@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Logiske uttrykk</h1>
+    <p>Logiske uttrykk har enten true eller false som verdi.</p>
+
+    <script>
+        document.write(3 < 5);  // true
+        document.write("<br>");
+        document.write(6 > 10);  // false
+        document.write("<br>");
+
+        document.write(5 == 5);  // true
+        
+        // == sjekker bare verdi
+        document.write("5" == 5);  // true
+        // === sjekker verdi OG datatype
+        document.write("5" === 5);  // false, siden datatypene er ulike
+        document.write(5 === 5);  // true
+
+        // OG, bare true && true gir true.
+        document.write(3==3 && 5 < 10);  // true OG true gir true
+        3 < 2 && 8 > 5  // false
+        
+
+        // ELLER: true hvis minst 1 er true.
+        // != betyr IKKE lik (eller ulik)
+        3 != 5 || 5 < 1
+        true || false
+        true
+
+        10 != 10 || 10 === "10"
+        false || false 
+        false
+
+        
+
+    </script>
+</body>
+</html>

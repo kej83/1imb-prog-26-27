@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Piratskipet</h1>
+    <p>Du må være høyere enn 150 cm, eller vekten må være minst 45 kg for å kjøre piratskipet.</p>
+
+    <label for="inpHoyde">Høyde i cm:</label><br>
+    <input id="inpHoyde" type="number" placeholder="155"><br>
+
+    <label for="inpVekt">Vekt i kg:</label><br>
+    <input id="inpVekt" type="number" placeholder="42"><br>
+
+    <button onclick="sjekk()">Sjekk</button>
+    <p id="txtUt"></p>
+
+    <script>
+        function sjekk() {
+            // 1. les inn høyde og vekt fra input-bokser
+            let hoyde = Number(inpHoyde.value);
+            let vekt = Number(inpVekt.value);
+            // 2. sjekk om kravet er oppfylt:
+            // høyere enn 150 cm, eller vekten må være minst 45 kg
+            if (hoyde > 150 || vekt >= 45) {
+                txtUt.textContent = "Hurra! Du kan kjøre!";
+            } else {
+                txtUt.textContent = "Dessverre, du er både for lav og for tynn";
+            }
+            // 3. gi tilbakemelding.
+        }
+    </script>
+</body>
+
+</html>
