@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Får du dama?</h1>
+    <p>Er du høy, mørk og kjekk ELLER rik så får du dama.</p>
+
+    Høyde:<input id="inpHoyde" type="number"><br>
+    Mørk? <select id="selMork">
+        <option value="ja">ja</option>
+        <option value="nei">nei</option>
+    </select><br>
+    Kjekk? <select id="selKjekk">
+        <option value="ja">ja</option>
+        <option value="nei">nei</option>
+    </select>
+    Årslønn: <input id="inpAarslonn" type="number">
+
+    <button onclick="sjekk()">Sjekk om dama blir din</button>
+
+    <p id="txtUt"></p>
+
+    <script> 
+        function sjekk() {
+            let hoyde = Number(inpHoyde.value);
+            let erMork = selMork.value;
+            let erKjekk = selKjekk.value;
+            let aarslonn = Number(inpAarslonn.value);
+
+            // Lager to boolske variabler (de har true eller false som verdi)
+            let erHoy = hoyde > 182;
+            let erRik = aarslonn > 900000;
+
+            // Er du høy, mørk og kjekk ELLER rik så får du dama.
+            if (erHoy && erMork && erKjekk || erRik) {
+                txtUt.textContent = "Du fikk dama!";
+            } else {
+                txtUt.textContent = "Løft mer vekter.";
+            }
+
+        }
+    </script>
+</body>
+</html>
