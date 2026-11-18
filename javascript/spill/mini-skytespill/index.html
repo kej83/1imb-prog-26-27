@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div onclick="bom()" id="spillBrett">
+        <div onclick="treff()" id="enemy"></div>
+    </div>
+
+    <script>
+        function treff() {
+            var lyd = new Audio("treff2.mp3");
+            lyd.play();
+            respawnEnemy();
+        }
+
+        function bom() {
+            var lyd = new Audio("bom.mp3")
+            lyd.play();
+            respawnEnemy();
+        }
+
+        function respawnEnemy() {
+            let nyTop = Math.random()*350;
+            let nyLeft = Math.random()*550;
+
+            enemy.style.top = `${nyTop}px`;
+            enemy.style.left = `${nyLeft}px`;
+        }
+
+        // Ekstra: Enemy som beveger seg. Bruk setInterval(flyttEnemy, 40)
+        // Inni function flyttEnemy så ØKER du top og left med f.eks. 1px
+    </script>
+</body>
+</html>
