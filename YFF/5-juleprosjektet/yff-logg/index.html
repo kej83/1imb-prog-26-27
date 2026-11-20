@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===================================================================
+       PROSJEKTLOGG – YFF (yrkesfaglig fordypning)
+       -------------------------------------------------------------------
+       SLIK BRUKER DU MALEN:
+       1. Åpne mappen i VS Code og åpne index.html.
+       2. Skriv inn din egen tekst der det står  ✏️ SKRIV HER  .
+          Bytt ut hele teksten, også parentesene.
+       3. Bilder legger du i mappen  bilder/  . Gi dem enkle navn uten
+          mellomrom og æøå, for eksempel  okt1-1.jpg  .
+          Endre src="..." i <img> slik at den peker på ditt bilde, og
+          skriv en alt-tekst som forklarer hva bildet viser.
+       4. Lagre (Ctrl+S) og åpne filen i nettleseren for å se resultatet.
+          Tips: bruk utvidelsen «Live Server» i VS Code.
+       5. Trenger du flere økter? Kopier en hel <article class="okt"> ...
+          </article> og lim inn under. Trenger du færre? Slett den.
+       6. Lever hele mappen (index.html + bilder/) som en zip-fil.
+       ================================================================= -->
+
+  <title>YFF-prosjekt – ✏️ Ditt navn</title>
+
+  <style>
+    /* ---------- Farger og grunnoppsett ----------
+       Du kan gjerne endre fargene her for å gi loggen ditt eget preg. */
+    :root {
+      --hovedfarge: #1f4e79;
+      --aksent: #2e86c1;
+      --bakgrunn: #f4f6f8;
+      --kort: #ffffff;
+      --tekst: #1d2430;
+      --dempet: #5b6675;
+      --linje: #d9dee5;
+      --ok: #1e8449;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--tekst);
+      background: var(--bakgrunn);
+    }
+
+    header {
+      background: var(--hovedfarge);
+      color: #fff;
+      padding: 2rem 1.5rem;
+    }
+    header .innhold { max-width: 900px; margin: 0 auto; }
+    header h1 { margin: 0 0 .25rem; font-size: 2rem; }
+    header p  { margin: 0; opacity: .9; }
+
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--linje);
+      position: sticky; top: 0; z-index: 10;
+    }
+    nav ul {
+      max-width: 900px; margin: 0 auto; padding: .5rem 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 1.25rem; list-style: none;
+    }
+    nav a { color: var(--hovedfarge); text-decoration: none; font-weight: 600; }
+    nav a:hover { text-decoration: underline; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+    section {
+      background: var(--kort);
+      border: 1px solid var(--linje);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    section > h2 {
+      margin-top: 0;
+      color: var(--hovedfarge);
+      border-bottom: 3px solid var(--aksent);
+      padding-bottom: .35rem;
+    }
+
+    /* Tabell med to kolonner: spørsmål til venstre, svar til høyre */
+    table.skjema { width: 100%; border-collapse: collapse; }
+    table.skjema th,
+    table.skjema td {
+      text-align: left; vertical-align: top;
+      padding: .75rem; border-bottom: 1px solid var(--linje);
+    }
+    table.skjema th { width: 32%; color: var(--dempet); font-weight: 600; }
+    table.skjema tr:last-child th,
+    table.skjema tr:last-child td { border-bottom: none; }
+
+    ul.plan { padding-left: 1.2rem; margin: 0; }
+
+    .godkjenning {
+      margin-top: 1rem; padding: .9rem 1rem;
+      border-left: 5px solid var(--ok);
+      background: #eaf6ee; border-radius: 6px;
+    }
+
+    /* ---------- Logg ---------- */
+    article.okt {
+      border: 1px solid var(--linje);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    article.okt h3 { margin: 0 0 .15rem; color: var(--hovedfarge); }
+    .dato { color: var(--dempet); margin: 0 0 1rem; font-size: .95rem; }
+
+    .bilder {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem; margin-top: 1rem;
+    }
+    figure { margin: 0; }
+    figure img {
+      width: 100%; height: auto; display: block;
+      border-radius: 6px; border: 1px solid var(--linje);
+    }
+    figcaption { font-size: .9rem; color: var(--dempet); margin-top: .35rem; }
+
+    .tips {
+      font-size: .95rem; color: var(--dempet);
+      background: #fff8e1; border: 1px dashed #e0c36b;
+      padding: .6rem .9rem; border-radius: 6px;
+    }
+
+    footer { text-align: center; color: var(--dempet); padding: 2rem 1rem; font-size: .9rem; }
+
+    /* Mobil */
+    @media (max-width: 600px) {
+      table.skjema th, table.skjema td { display: block; width: 100%; }
+      table.skjema th { border-bottom: none; padding-bottom: 0; }
+    }
+
+    /* Utskrift / lagre som PDF */
+    @media print {
+      nav, .tips { display: none; }
+      body { background: #fff; }
+      section, article.okt { break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================== TOPP =========================== -->
+  <header>
+    <div class="innhold">
+      <h1>✏️ SKRIV HER: Tittel på prosjektet</h1>
+      <p>Prosjektlogg – YFF (yrkesfaglig fordypning) · Navn: ✏️ SKRIV HER · Klasse: ✏️ SKRIV HER</p>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#om">Om prosjektet</a></li>
+      <li><a href="#planlegging">Planlegging</a></li>
+      <li><a href="#logg">Logg</a></li>
+      <li><a href="#evaluering">Evaluering</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ======================= OM PROSJEKTET ======================= -->
+    <section id="om">
+      <h2>Om prosjektet</h2>
+      <table class="skjema">
+        <tr>
+          <th>Tittel på prosjekt</th>
+          <td>✏️ SKRIV HER (f.eks. «Reklamefilm for Toppturen Sport»)</td>
+        </tr>
+        <tr>
+          <th>Lærefag (Vg3)</th>
+          <td>✏️ SKRIV HER (f.eks. Innholdsproduksjonsfaget)</td>
+        </tr>
+        <tr>
+          <th>Relevante kompetansemål Vg3</th>
+          <td>
+            <!-- Kopier inn kompetansemålene fra dokumentet med lærefag.
+                 Legg til eller fjern <li>-linjer etter behov. -->
+            <ul class="plan">
+              <li>✏️ SKRIV HER: kompetansemål 1</li>
+              <li>✏️ SKRIV HER: kompetansemål 2</li>
+              <li>✏️ SKRIV HER: kompetansemål 3</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Oppdrag / læringsmål</th>
+          <td>✏️ SKRIV HER: Hva er oppdraget, hvem er kunden, og hva skal du lære?</td>
+        </tr>
+        <tr>
+          <th>Varighet</th>
+          <td>4 økter à 6 timer (24 timer) + presentasjon</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ======================== PLANLEGGING ======================== -->
+    <section id="planlegging">
+      <h2>Planlegging</h2>
+      <table class="skjema">
+        <tr>
+          <th>Hva kan du om temaet fra før?</th>
+          <td>✏️ SKRIV HER</td>
+        </tr>
+        <tr>
+          <th>Hva trenger du av utstyr, programvare etc.?</th>
+          <td>
+            <ul class="plan">
+              <li>✏️ SKRIV HER: utstyr</li>
+              <li>✏️ SKRIV HER: programvare</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Plan for gjennomføringen</th>
+          <td>
+            <!-- Beskriv økt for økt hva du skal gjøre. -->
+            <ul class="plan">
+              <li><strong>Økt 1:</strong> ✏️ SKRIV HER</li>
+              <li><strong>Økt 2:</strong> ✏️ SKRIV HER</li>
+              <li><strong>Økt 3:</strong> ✏️ SKRIV HER</li>
+              <li><strong>Økt 4:</strong> ✏️ SKRIV HER</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+
+      <div class="godkjenning">
+        <strong>Send inn til faglærer for godkjenning før du starter med prosjektet.</strong><br>
+        Godkjent av faglærer: ✏️ (fylles ut når planen er godkjent) · Dato: ✏️
+      </div>
+    </section>
+
+    <!-- ============================ LOGG ============================ -->
+    <section id="logg">
+      <h2>Logg</h2>
+      <p class="tips">
+        Skriv logg etter hver økt. Legg inn minst to bilder fra hver økt. Vær så detaljert som mulig:
+        hva gjorde du, hva fungerte, hva var vanskelig, og hvordan løste du det?
+        Jobber du på datamaskinen, legg ved skjermbilder (Windows: Win + Shift + S).
+      </p>
+
+      <!-- ----- ØKT 1 ----- Kopier hele <article> for å lage flere økter ----- -->
+      <article class="okt">
+        <h3>Økt 1</h3>
+        <p class="dato">Dato: ✏️ SKRIV HER</p>
+
+        <p>✏️ SKRIV HER: Hva gjorde du i dag? Beskriv steg for steg.</p>
+        <p>✏️ SKRIV HER: Hva gikk bra, og hva var utfordrende? Hvordan løste du det?</p>
+
+        <div class="bilder">
+          <figure>
+            <img src="bilder/okt1-1.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+          <figure>
+            <img src="bilder/okt1-2.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- ----- ØKT 2 ----- -->
+      <article class="okt">
+        <h3>Økt 2</h3>
+        <p class="dato">Dato: ✏️ SKRIV HER</p>
+
+        <p>✏️ SKRIV HER: Hva gjorde du i dag? Beskriv steg for steg.</p>
+        <p>✏️ SKRIV HER: Hva gikk bra, og hva var utfordrende? Hvordan løste du det?</p>
+
+        <div class="bilder">
+          <figure>
+            <img src="bilder/okt2-1.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+          <figure>
+            <img src="bilder/okt2-2.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- ----- ØKT 3 ----- -->
+      <article class="okt">
+        <h3>Økt 3</h3>
+        <p class="dato">Dato: ✏️ SKRIV HER</p>
+
+        <p>✏️ SKRIV HER: Hva gjorde du i dag? Beskriv steg for steg.</p>
+        <p>✏️ SKRIV HER: Hva gikk bra, og hva var utfordrende? Hvordan løste du det?</p>
+
+        <div class="bilder">
+          <figure>
+            <img src="bilder/okt3-1.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+          <figure>
+            <img src="bilder/okt3-2.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- ----- ØKT 4 ----- -->
+      <article class="okt">
+        <h3>Økt 4</h3>
+        <p class="dato">Dato: ✏️ SKRIV HER</p>
+
+        <p>✏️ SKRIV HER: Hva gjorde du i dag? Beskriv steg for steg.</p>
+        <p>✏️ SKRIV HER: Hva gikk bra, og hva var utfordrende? Hvordan løste du det?</p>
+
+        <div class="bilder">
+          <figure>
+            <img src="bilder/okt4-1.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+          <figure>
+            <img src="bilder/okt4-2.jpg" alt="✏️ Beskriv hva bildet viser">
+            <figcaption>✏️ Bildetekst</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <!-- ========================= EVALUERING ========================= -->
+    <section id="evaluering">
+      <h2>Evaluering</h2>
+      <table class="skjema">
+        <tr>
+          <th>Hva har du lært i dette prosjektet?</th>
+          <td>✏️ SKRIV HER</td>
+        </tr>
+        <tr>
+          <th>Hva ville du gjort annerledes?</th>
+          <td>✏️ SKRIV HER</td>
+        </tr>
+        <tr>
+          <th>Vurder eget arbeid og egen utvikling</th>
+          <td>✏️ SKRIV HER: Hvordan vurderer du produktet ditt opp mot oppdraget og kompetansemålene?</td>
+        </tr>
+      </table>
+    </section>
+
+  </main>
+
+  <footer>
+    Laget av ✏️ Ditt navn · YFF – Vg1 informasjonsteknologi og medieproduksjon
+  </footer>
+
+</body>
+</html>
