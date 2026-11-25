@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Mini skytespill</h1>
+    <p id="txtPoeng">Poeng: 0</p>
+    
+    <div id="gameBoard">
+        <div id="enemy" onclick="treff()"></div>
+    </div>
+
+
+
+
+    <script>
+        function treff() {
+            // Registrerer treff
+            poeng++;
+            txtPoeng.textContent = `Poeng: ${poeng}`;
+            nyFiende();
+        }
+
+        function nyFiende() {
+            // Sett ny posisjon til enemy
+            // x = -30, akkurat utenfor
+            x = -fiendeStorrelse;
+            y = Math.floor(Math.random()*(brettHoyde - fiendeStorrelse));
+            tegnFiende();
+        }
+
+        function tegnFiende() {
+            enemy.style.left = `${x}px`;
+            enemy.style.top = `${y}px`;
+        }
+
+        function flytt () {
+            // Vi flytter fienden horisontalt
+            x += fart;
+            if (x > brettBredde) {
+                // Respawn når utenfor
+                nyFiende();
+            }
+            tegnFiende();
+        }
+
+        // Fra style.css
+        let brettBredde = 500;
+        let brettHoyde = 400;
+        let fiendeStorrelse = 30;
+
+        // Hvor fienden er
+        let x = 0;
+        let y = 0;
+        let fart = 2;
+
+        // Poeng
+        let poeng = 0;
+
+        // Tidtaker: hvert 20.ms kjøres flytt-funksjonen
+        // Dvs. 50 ganger per sekund.
+        let tidtaker = setInterval(flytt, 20);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+#gameBoard {
+    position: relative;
+    height: 500px;
+    width: 400px;
+    border: 1px solid brown;
+    overflow:hidden;
+}
+
+#enemy {
+    position:absolute;
+    width:30px;
+    height:30px;
+    background-color:green;
+    border-radius:50%;
+    left:100px;
+    top:-60px;
+}
